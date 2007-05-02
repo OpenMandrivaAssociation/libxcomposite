@@ -1,8 +1,8 @@
 %define libxcomposite %mklibname xcomposite 1
 Name: libxcomposite
 Summary: X Composite Library
-Version: 0.3
-Release: %mkrel 3
+Version: 0.3.1
+Release: %mkrel 1
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
