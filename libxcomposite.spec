@@ -1,7 +1,7 @@
 %define libxcomposite %mklibname xcomposite 1
 Name: libxcomposite
 Summary: X Composite Library
-Version: 0.3.1
+Version: 0.3.2
 Release: %mkrel 1
 Group: Development/X11
 License: MIT
@@ -54,6 +54,7 @@ fi
 %{_libdir}/libXcomposite.la
 %{_libdir}/pkgconfig/xcomposite.pc
 %{_includedir}/X11/extensions/Xcomposite.h
+%{_mandir}/man3/*
 
 #-----------------------------------------------------------
 
