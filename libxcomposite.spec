@@ -2,7 +2,7 @@
 Name: libxcomposite
 Summary: X Composite Library
 Version: 0.4.0
-Release: %mkrel 3
+Release: %mkrel 4
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
