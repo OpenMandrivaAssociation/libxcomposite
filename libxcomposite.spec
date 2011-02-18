@@ -1,8 +1,11 @@
-%define libxcomposite %mklibname xcomposite 1
+%define libname %mklibname xcomposite 1
+%define develname %mklibname xcomposite -d
+%define staticname %mklibname xcomposite -s -d
+
 Name: libxcomposite
 Summary: X Composite Library
 Version: 0.4.3
-Release: %mkrel 1
+Release: %mkrel 2
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
@@ -20,35 +23,37 @@ X Composite Library
 
 #-----------------------------------------------------------
 
-%package -n %{libxcomposite}
+%package -n %{libname}
 Summary: X Composite Library
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libxcomposite}
+%description -n %{libname}
 X Composite  Library
 
 #-----------------------------------------------------------
 
-%package -n %{libxcomposite}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
+Requires: %{libname} = %{version}-%{release}
 Requires: x11-proto-devel >= 1.0.0
 Requires: libxfixes-devel >= 3.0.1.2
 Provides: libxcomposite-devel = %{version}-%{release}
+Provides: libxcomposite1-devel = %{version}-%{release}
+Obsoletes: %{mklibname xcomposite 1 -d}
 Conflicts: libxorg-x11-devel < 7.0
-Requires: %{libxcomposite} = %{version}
 
-%description -n %{libxcomposite}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%pre -n %{libxcomposite}-devel
+%pre -n %{develname}
 if [ -h %{_includedir}/X11 ]; then
 	rm -f %{_includedir}/X11
 fi
 
-%files -n %{libxcomposite}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libXcomposite.so
 %{_libdir}/libXcomposite.la
@@ -58,17 +63,19 @@ fi
 
 #-----------------------------------------------------------
 
-%package -n %{libxcomposite}-static-devel
+%package -n %{staticname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libxcomposite}-devel = %{version}
+Requires: %{develname} = %{version}-%{release}
 Provides: libxcomposite-static-devel = %{version}-%{release}
+Provides: libxcomposite1-static-devel = %{version}-%{release}
+Obsoletes: %{mklibname xcomposite 1 -s -d}
 Conflicts: libxorg-x11-static-devel < 7.0
 
-%description -n %{libxcomposite}-static-devel
+%description -n %{staticname}
 Static development files for %{name}
 
-%files -n %{libxcomposite}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/libXcomposite.a
 
@@ -97,7 +104,7 @@ rm -rf %{buildroot}
 %postun -p /sbin/ldconfig
 %endif
 
-%files -n %{libxcomposite}
+%files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libXcomposite.so.1
 %{_libdir}/libXcomposite.so.1.0.0
