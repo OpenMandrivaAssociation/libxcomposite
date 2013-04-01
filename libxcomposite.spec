@@ -41,6 +41,7 @@ Development files for %{name}
 %setup -qn libXcomposite-%{version}
 
 %build
+autoreconf -fi
 %configure2_5x \
 	--disable-static \
 	--x-includes=%{_includedir} \
