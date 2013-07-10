@@ -2,13 +2,13 @@
 %define libname %mklibname xcomposite %{major}
 %define devname %mklibname xcomposite -d
 
-Name:		libxcomposite
 Summary:	X Composite Library
+Name:		libxcomposite
 Version:	0.4.4
 Release:	1
 Group:		Development/X11
 License:	MIT
-URL:		http://xorg.freedesktop.org
+Url:		http://xorg.freedesktop.org
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXcomposite-%{version}.tar.bz2
 
 BuildRequires:	pkgconfig(x11)
@@ -39,9 +39,9 @@ Development files for %{name}
 
 %prep
 %setup -qn libXcomposite-%{version}
+autoreconf -fi
 
 %build
-autoreconf -fi
 %configure2_5x \
 	--disable-static \
 	--x-includes=%{_includedir} \
