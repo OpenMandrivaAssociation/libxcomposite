@@ -4,8 +4,8 @@
 
 Summary:	X Composite Library
 Name:		libxcomposite
-Version:	0.4.4
-Release:	18
+Version:	0.4.5
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -18,7 +18,7 @@ BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xproto)
 
 %description
-X Composite Library
+X Composite Library.
 
 %package -n %{libname}
 Summary:	X Composite Library
@@ -26,7 +26,7 @@ Group:		Development/X11
 Provides:	%{name} = %{version}
 
 %description -n %{libname}
-X Composite  Library
+X Composite  Library.
 
 %package -n %{devname}
 Summary:	Development files for %{name}
@@ -35,27 +35,22 @@ Requires:	%{libname} = %{version}-%{release}
 Provides:	libxcomposite-devel = %{version}-%{release}
 
 %description -n %{devname}
-Development files for %{name}
+Development files for %{name}.
 
 %prep
-%setup -qn libXcomposite-%{version}
+%autosetup -n libXcomposite-%{version}
 autoreconf -fi
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
-
-%pre -n %{devname}
-if [ -h %{_includedir}/X11 ]; then
-	rm -f %{_includedir}/X11
-fi
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libXcomposite.so.%{major}*
@@ -65,4 +60,3 @@ fi
 %{_libdir}/pkgconfig/xcomposite.pc
 %{_includedir}/X11/extensions/Xcomposite.h
 %{_mandir}/man3/*
-
