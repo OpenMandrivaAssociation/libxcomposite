@@ -29,11 +29,13 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xproto)
+BuildRequires:	pkgconfig(xcb)
 
 %if %{with compat32}
 BuildRequires:	devel(libX11)
 BuildRequires:	devel(libXext)
 BuildRequires:	devel(libXfixes)
+BuildRequires:	devel(libxcb)
 %endif
 
 %description
