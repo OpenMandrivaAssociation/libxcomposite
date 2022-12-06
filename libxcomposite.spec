@@ -17,12 +17,12 @@
 
 Summary:	X Composite Library
 Name:		libxcomposite
-Version:	0.4.5
-Release:	3
+Version:	0.4.6
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXcomposite-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXcomposite-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
@@ -32,6 +32,7 @@ BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xcb)
 
 %if %{with compat32}
+BuildRequires:	libc6
 BuildRequires:	devel(libX11)
 BuildRequires:	devel(libXext)
 BuildRequires:	devel(libXfixes)
@@ -79,7 +80,7 @@ Development files for %{name}.
 %prep
 %autosetup -n libXcomposite-%{version}
 autoreconf -fi
-export CONFIGURE_TOP="`pwd`"
+export CONFIGURE_TOP="$(pwd)"
 %if %{with compat32}
 mkdir build32
 cd build32
@@ -109,7 +110,7 @@ cd build
 %{_libdir}/libXcomposite.so
 %{_libdir}/pkgconfig/xcomposite.pc
 %{_includedir}/X11/extensions/Xcomposite.h
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*
 
 %if %{with compat32}
 %files -n %{lib32name}
